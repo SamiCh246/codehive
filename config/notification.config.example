@@ -1,0 +1,38 @@
+# CodeHive Course Update Notification Configuration
+# Copy this file to .env and update with your actual values
+
+# Firebase Configuration (Required)
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+
+# Email Notifications (Optional)
+EMAIL_NOTIFICATIONS_ENABLED=false
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=your_email@gmail.com
+SMTP_PASS=your_app_password
+EMAIL_FROM=your_email@gmail.com
+EMAIL_TO=admin1@example.com,admin2@example.com
+
+# Slack Notifications (Optional)
+SLACK_NOTIFICATIONS_ENABLED=false
+SLACK_WEBHOOK_URL=https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK
+SLACK_CHANNEL=#alerts
+
+# Webhook Notifications (Optional)
+WEBHOOK_NOTIFICATIONS_ENABLED=false
+WEBHOOK_URL=https://your-monitoring-service.com/webhook
+WEBHOOK_SECRET=your_webhook_secret
+
+# Course Update Configuration
+UPDATE_SCHEDULE=0 2 * * 0  # Every Sunday at 2:00 AM
+HEALTH_CHECK_SCHEDULE=0 3 * * *  # Daily at 3:00 AM
+
+# Logging Configuration
+LOG_LEVEL=INFO
+LOG_RETENTION_DAYS=30
