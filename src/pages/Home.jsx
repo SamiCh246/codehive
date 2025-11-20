@@ -12,7 +12,6 @@ export default function Home() {
   return (
     <section className="home">
       <div className={`home__hero ${isLoaded ? 'home__hero--loaded' : ''}`}>
-        <span className="home__badge">MVP Beta</span>
         <h1 className="home__headline">
           Unifying <span className="home__gradient-text">Computer Science</span> Resources for Every DePauw Student.
         </h1>
