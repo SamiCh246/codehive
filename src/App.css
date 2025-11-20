@@ -3076,6 +3076,47 @@ html {
   align-items: center;
 }
 
+.profiles-filters {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.profiles-filter-group {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.profiles-filter-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profiles-filter-option input {
+  accent-color: #FFCC00;
+}
+
+.profiles-filter-option.active {
+  border-color: rgba(255, 204, 0, 0.8);
+  color: var(--text-primary);
+  background: rgba(255, 204, 0, 0.18);
+  box-shadow: 0 4px 12px rgba(255, 204, 0, 0.2);
+}
+
 .profiles-count {
   font-size: 1rem;
   color: var(--text-secondary);
@@ -3577,29 +3618,7 @@ html {
   }
 }
 
-/* Chat Page Styles */
-.chat-page {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background: var(--bg-elevated);
-  color: var(--text-primary);
-}
-
-.chat-navbar {
-  background: var(--bg-elevated);
-  padding: 1rem 2rem;
-  font-weight: 700;
-  font-size: 1.5rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-}
-
-.chat-container {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-}
-
+ 
 .chat-sidebar {
   width: 320px;
   background: rgba(255, 255, 255, 0.8);
@@ -3864,28 +3883,6 @@ html {
 /* ========================================
    MODERN CHAT SYSTEM STYLES
    ======================================== */
-
-/* Chat Page Layout */
-.chat-page {
-  height: calc(100vh - var(--navbar-height, 80px) - 2rem);
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
-  overflow: hidden;
-  margin-top: 1rem;
-}
-
-.chat-container {
-  display: flex;
-  height: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  box-shadow: var(--shadow-xl);
-  border: 1px solid rgba(148, 163, 184, 0.15);
-  overflow: hidden;
-}
 
 /* Chat Sidebar */
 .chat-sidebar {
@@ -5005,12 +5002,6 @@ html {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .chat-container {
-    flex-direction: column;
-    height: 100vh;
-    border-radius: 0;
-  }
-  
   .chat-sidebar {
     width: 100%;
     height: 40vh;
@@ -5058,65 +5049,6 @@ html {
   }
 }
 
-/* ========================================
-   CHAT PAGE FULL-HEIGHT LAYOUT
-   ======================================== */
-
-/* CSS Variables for Chat Layout */
-:root {
-  --navbar-height: 80px;
-  --composer-height: 92px;
-}
-
-/* Chat-specific app shell modifications */
-.app-shell--chat {
-  padding: 0;
-  min-height: 100vh;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.app-shell--chat .app-shell__content {
-  height: 100%;
-  justify-content: flex-start;
-}
-
-/* Chat-specific page modifications */
-.page--chat {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0;
-  height: calc(100vh - var(--navbar-height, 80px) - 10px);
-  min-height: calc(100vh - var(--navbar-height, 80px) - 10px);
-  overflow: hidden;
-  gap: 0;
-  margin-top: calc(var(--navbar-height, 80px) + 10px);
-}
-
-/* Chat page layout */
-.chat-page {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-.chat-container {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.98);
-  border-radius: 0;
-  box-shadow: none;
-  border: none;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
 
 /* Chat Sidebar - Full Height */
 .chat-sidebar {
@@ -5172,19 +5104,9 @@ html {
     border-right: none;
     border-bottom: 1px solid rgba(148, 163, 184, 0.15);
   }
-  
-  .chat-container {
-    flex-direction: column;
-  }
-  
+
   .chat-main {
     height: 60vh;
-  }
-  
-  .page--chat {
-    height: calc(100vh - var(--navbar-height, 80px) - 10px);
-    min-height: calc(100vh - var(--navbar-height, 80px) - 10px);
-    margin-top: calc(var(--navbar-height, 80px) + 10px);
   }
 }
 
@@ -6806,430 +6728,6 @@ html {
   }
 }
 
-/* Removed debug styles */
-
-
-/* Social page styles */
-.social-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: var(--bg-primary);
-  position: relative;
-}
-
-.social-content {
-  flex: 1;
-  min-height: 0;
-}
-
-/* Apple-style toggle switch in bottom left corner */
-.social-toggle-container {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-}
-
-.apple-toggle-switch {
-  position: relative;
-  width: 100px;
-  height: 44px;
-}
-
-.toggle-track {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 22px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
-}
-
-.toggle-option {
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 18px;
-  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-  z-index: 2;
-  position: relative;
-  flex: 1;
-}
-
-.toggle-option--forum {
-  color: #8E8E93;
-  z-index: 2;
-}
-
-.toggle-option--chat {
-  color: #8E8E93;
-  z-index: 2;
-}
-
-.toggle-slider {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg, #FFCC00 0%, #FFA500 100%);
-  border-radius: 18px;
-  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(255, 204, 0, 0.3);
-  z-index: 1;
-}
-
-
-/* Ensure toggle icons are always visible */
-.toggle-option--forum .toggle-icon,
-.toggle-option--chat .toggle-icon {
-  transition: all 0.3s ease;
-}
-
-.slider-knob {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  position: relative;
-}
-
-.toggle-icon {
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-.toggle-button {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border: none;
-  border-radius: 24px;
-  cursor: pointer;
-  z-index: 10;
-  transition: all 0.2s ease;
-}
-
-.toggle-button:hover {
-  background: rgba(0, 0, 0, 0.02);
-}
-
-.toggle-button:active {
-  transform: scale(0.98);
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* Hover effects */
-.apple-toggle-switch:hover .toggle-track {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-.apple-toggle-switch:hover .toggle-slider {
-  box-shadow: 0 4px 12px rgba(255, 204, 0, 0.4);
-}
-
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-  .social-toggle-container {
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .apple-toggle-switch {
-    width: 90px;
-    height: 40px;
-  }
-  
-  .toggle-track {
-    border-radius: 20px;
-    padding: 2px;
-  }
-  
-  .toggle-option {
-    width: 32px;
-    height: 32px;
-    border-radius: 16px;
-  }
-  
-  .toggle-slider {
-    width: 32px;
-    height: 32px;
-    border-radius: 16px;
-  }
-  
-  .slider-knob {
-    border-radius: 16px;
-  }
-  
-  .toggle-icon {
-    font-size: 14px;
-  }
-}
-
-
-/* Chat component when used within Social page - Card Layout */
-.social-content .chat-page {
-  height: 100%; /* Use full available height */
-  margin: 0 auto; /* No top margin */
-  padding: 0.25rem;
-  background: transparent;
-  width: min(1180px, 98%); /* Increased width, still within navbar */
-  display: flex;
-  align-items: stretch; /* Stretch to fill height */
-  justify-content: center;
-}
-
-.social-content .chat-container {
-  height: 100%;
-  border-radius: 26px;
-  box-shadow: none;
-  border: 1px solid rgba(148, 163, 184, 0.24);
-  margin: 0;
-  background: rgba(255, 255, 255, 0.9);
-  display: flex;
-  overflow: hidden;
-  position: relative;
-}
-
-.social-content .chat-container::before {
-  content: '';
-  position: absolute;
-  inset: 1px;
-  border-radius: 25px;
-  background: linear-gradient(135deg, rgba(255, 204, 0, 0.16), rgba(14, 165, 233, 0.08));
-  opacity: 0.4;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.social-content .chat-container > * {
-  position: relative;
-  z-index: 1;
-}
-
-.social-content .chat-sidebar {
-  width: 350px;
-  background: transparent;
-  border-radius: 25px 0 0 25px;
-  margin: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid rgba(148, 163, 184, 0.15);
-}
-
-.social-content .chat-main {
-  flex: 1;
-  background: transparent;
-  border-radius: 0 25px 25px 0;
-  margin: 0;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Sidebar Header */
-.social-content .chat-sidebar-header {
-  padding: 1.5rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-}
-
-.social-content .chat-sidebar-header h2 {
-  color: #FFCC00;
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin: 0;
-}
-
-/* Sidebar Search */
-.social-content .chat-search-container {
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-  flex-shrink: 0;
-}
-
-/* Sidebar Conversations - Scrollable */
-.social-content .chat-conversations {
-  flex: 1;
-  overflow-y: auto;
-  padding: 0.5rem 0;
-}
-
-/* Main Chat Header */
-.social-content .chat-header {
-  padding: 1.5rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-  background: transparent;
-  position: relative;
-  z-index: 2;
-}
-
-/* Main Chat Messages - Scrollable */
-.social-content .chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-/* Chat Input - Pinned at Bottom */
-.social-content .chat-input-container {
-  padding: 1.5rem;
-  border-top: 1px solid rgba(148, 163, 184, 0.15);
-  background: transparent;
-  position: relative;
-  z-index: 2;
-  flex-shrink: 0;
-}
-
-/* Responsive adjustments for social page */
-@media (max-width: 768px) {
-  
-  .social-content .chat-page {
-    height: 100%; /* Use full available height on mobile */
-    margin: 0 auto; /* No top margin on mobile */
-    padding: 0.25rem;
-    width: 98%; /* Maximum width on mobile */
-  }
-  
-  .social-content .chat-container {
-    flex-direction: column;
-    border-radius: 20px;
-  }
-  
-  .social-content .chat-container::before {
-    border-radius: 19px;
-  }
-  
-  .social-content .chat-sidebar {
-    width: 100%;
-    height: 40vh;
-    border-radius: 20px 20px 0 0;
-    border-right: none;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-  }
-  
-  .social-content .chat-main {
-    height: 60vh;
-    border-radius: 0 0 20px 20px;
-  }
-  
-  .social-content .chat-sidebar-header,
-  .social-content .chat-header {
-    padding: 1rem;
-  }
-  
-  .social-content .chat-search-container,
-  .social-content .chat-input-container {
-    padding: 1rem;
-  }
-}
-
-
-/* Simple toggle switch in bottom left corner */
-.simple-toggle-switch {
-  display: flex;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 25px;
-  padding: 0.25rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.simple-toggle-switch .toggle-option {
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 20px;
-  background: transparent;
-  color: #8E8E93;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 16px;
-}
-
-.simple-toggle-switch .toggle-option:hover {
-  background: rgba(0, 0, 0, 0.05);
-  color: #666;
-}
-
-.simple-toggle-switch .toggle-option--active {
-  background: linear-gradient(135deg, #FFCC00 0%, #FFA500 100%);
-  color: white;
-  box-shadow: 0 2px 8px rgba(255, 204, 0, 0.3);
-}
-
-.simple-toggle-switch .toggle-option--active:hover {
-  background: linear-gradient(135deg, #FFA500 0%, #FF8800 100%);
-  transform: scale(1.05);
-}
-
-.simple-toggle-switch .toggle-icon {
-  font-size: 16px;
-  transition: all 0.3s ease;
-}
-
-/* Mobile responsive for simple toggle */
-@media (max-width: 768px) {
-  .simple-toggle-switch {
-    gap: 0.25rem;
-    padding: 0.2rem;
-  }
-  
-  .simple-toggle-switch .toggle-option {
-    width: 36px;
-    height: 36px;
-    border-radius: 18px;
-  }
-  
-  .simple-toggle-switch .toggle-icon {
-    font-size: 14px;
-  }
-}
-
-
 /* Chat Modal Popup Styles */
 .chat-modal-backdrop {
   position: fixed !important;
@@ -7591,72 +7089,6 @@ html {
   }
 }
 
-
-/* Clean up: Remove social page styles that are no longer needed */
-/* The following styles can be removed as they're no longer used:
-   - .social-page
-   - .social-content  
-   - .social-toggle-container
-   - .simple-toggle-switch
-   - .social-placeholder
-   - All social-related CSS rules
-*/
-
-
-/* Simple Social Page Styles */
-.social-page {
-  position: relative;
-  min-height: 100vh;
-  padding: 2rem;
-}
-
-.social-chat-button {
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
-  background: linear-gradient(135deg, #FFCC00 0%, #FFA500 100%);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 1rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 16px rgba(255, 204, 0, 0.3);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  z-index: 10;
-}
-
-.social-chat-button:hover {
-  background: linear-gradient(135deg, #FFA500 0%, #FF8800 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
-}
-
-.social-chat-icon {
-  font-size: 1.1rem;
-}
-
-/* Mobile responsive for social page */
-@media (max-width: 768px) {
-  .social-page {
-    padding: 1rem;
-  }
-  
-  .social-chat-button {
-    top: 1rem;
-    right: 1rem;
-    padding: 0.875rem 1.25rem;
-    font-size: 0.95rem;
-  }
-  
-  .social-chat-icon {
-    font-size: 1rem;
-  }
-}
 
 /* ============================================================================
    DISCUSSION COMPONENTS STYLES
