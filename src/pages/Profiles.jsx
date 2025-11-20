@@ -183,7 +183,7 @@ export default function Profiles() {
 
           <div className="profiles-stats" aria-live="polite">
             <span className="profiles-count">
-              {filteredProfiles.length} {filteredProfiles.length === 1 ? 'student' : 'students'}
+              {filteredProfiles.length} {filteredProfiles.length === 1 ? 'profile' : 'profiles'}
             </span>
           </div>
         </div>
