@@ -7,6 +7,14 @@ import { ProfileModal } from '../components/ProfileComponents'
 import { db } from '../firebase'
 import { useAuth } from '../hooks/useAuth'
 
+const PROFILE_FILTERS = [
+  { value: 'all', label: 'All Profiles' },
+  { value: 'professor', label: 'Professors' },
+  { value: 'ta', label: 'Teaching Assistants' },
+  { value: 'student', label: 'Students' },
+  { value: 'alumni', label: 'Alums' }
+]
+
 export default function Profiles() {
   const { currentUser } = useAuth()
   const [profiles, setProfiles] = useState([])
@@ -16,6 +24,7 @@ export default function Profiles() {
   const [modalOpen, setModalOpen] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
   const [isSearching, setIsSearching] = useState(false)
+  const [activeProfileFilter, setActiveProfileFilter] = useState('all')
 
   // Function to get profile type tag info (same as Account.jsx)
   const getProfileTypeInfo = (profile) => {
@@ -107,36 +116,40 @@ export default function Profiles() {
 
   // Search functionality
   useEffect(() => {
-    if (!searchTerm.trim()) {
-      setFilteredProfiles(profiles)
-      setIsSearching(false)
-      return
-    }
-
+    const trimmedSearch = searchTerm.trim().toLowerCase()
     setIsSearching(true)
-    const searchProfiles = () => {
-      const filtered = profiles.filter(profile =>
-        profile.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        profile.major?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        profile.studentClass?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        profile.about?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (Array.isArray(profile.skills) && profile.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()))) ||
-        (Array.isArray(profile.interests) && profile.interests.some(interest => interest.toLowerCase().includes(searchTerm.toLowerCase())))
-      )
+
+    const timeoutId = setTimeout(() => {
+      let filtered = [...profiles]
+
+      if (activeProfileFilter !== 'all') {
+        filtered = filtered.filter(profile => (profile.role || 'user') === activeProfileFilter)
+      }
+
+      if (trimmedSearch) {
+        filtered = filtered.filter(profile =>
+          profile.name?.toLowerCase().includes(trimmedSearch) ||
+          profile.major?.toLowerCase().includes(trimmedSearch) ||
+          profile.studentClass?.toLowerCase().includes(trimmedSearch) ||
+          profile.about?.toLowerCase().includes(trimmedSearch) ||
+          (Array.isArray(profile.skills) && profile.skills.some(skill => skill.toLowerCase().includes(trimmedSearch))) ||
+          (Array.isArray(profile.interests) && profile.interests.some(interest => interest.toLowerCase().includes(trimmedSearch)))
+        )
+      }
+
       setFilteredProfiles(filtered)
       setIsSearching(false)
-    }
+    }, trimmedSearch ? 300 : 0)
 
-    const timeoutId = setTimeout(searchProfiles, 300)
     return () => clearTimeout(timeoutId)
-  }, [searchTerm, profiles])
+  }, [searchTerm, profiles, activeProfileFilter])
 
   return (
     <section className="section profiles-section">
       <div className="profiles-container">
         <div className="profiles-header">
           <div className="profiles-title-section">
-            <h1 className="section__title section__title--gradient">Student Profiles</h1>
+            <h1 className="section__title section__title--gradient">Profiles</h1>
           </div>
           
           <div className="profiles-search-container">
@@ -150,7 +163,25 @@ export default function Profiles() {
             />
           </div>
           
-          <div className="profiles-stats">
+          <div className="profiles-filters" role="region" aria-label="Filter profiles">
+            <fieldset className="profiles-filter-group">
+              <legend className="sr-only">Profile type filter</legend>
+              {PROFILE_FILTERS.map((filter) => (
+                <label key={filter.value} className={`profiles-filter-option ${activeProfileFilter === filter.value ? 'active' : ''}`}>
+                  <input
+                    type="radio"
+                    name="profile-filter"
+                    value={filter.value}
+                    checked={activeProfileFilter === filter.value}
+                    onChange={() => setActiveProfileFilter(filter.value)}
+                  />
+                  <span>{filter.label}</span>
+                </label>
+              ))}
+            </fieldset>
+          </div>
+
+          <div className="profiles-stats" aria-live="polite">
             <span className="profiles-count">
               {filteredProfiles.length} {filteredProfiles.length === 1 ? 'student' : 'students'}
             </span>
